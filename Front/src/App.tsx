@@ -1,59 +1,37 @@
-import './App.css'
-import React from 'react';
+// App.tsx
+import React  from 'react';
+import './app.css'; 
+import LeftSide from './pages/side_pages/LeftSide';
+import RightSide from './pages/side_pages/RightSide';
 import MainPage from './pages/main_page';
-import IconContainer from './components/leftside/IconContainer';
-import AdmissionTicket from './components/admissionTickets/admissionTickets';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App: React.FC = () => {
-  const pageStyle = {
-    display: 'flex', // flex 레이아웃 적용
-    alignItems: 'center', // 수직 중앙 정렬
-    justifyContent: 'center', // 수평 중앙 정렬
-    borderRadius: '8px',
-    margin: '5px auto',
-  };
 
-  const arrowStyle: React.CSSProperties = {
-    width: '20px', 
-    height: '20px', 
-  };
-
-  const handleLeftArrowClick = () => {
-    console.log('왼쪽 화살표 클릭');
-    // 왼쪽 화살표 클릭 시 수행할 로직
-  };
-
-  const handleRightArrowClick = () => {
-    console.log('오른쪽 화살표 클릭');
-    // 오른쪽 화살표 클릭 시 수행할 로직
-  };
-
-  const rightSectionStyle: React.CSSProperties = {
+  const pageStyle: React.CSSProperties = {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end' // 요소들을 오른쪽 끝으로 정렬
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '8px',
+    height: "97vh",
+  };
+
+  const mainPageStyle: React.CSSProperties = {
+    flex: 2.5, // 메인 페이지 비율 8
   };
 
   return (
-    <div style={pageStyle}>
-      <div>
-        <IconContainer />
-        <button onClick={handleLeftArrowClick}>
-          <img src="../../public/images/leftarrow.png" alt="Left Arrow" style={arrowStyle} />
-        </button>
+    <Router>
+      <div style={pageStyle}>
+        <LeftSide />
+        <div style={mainPageStyle}>
+          <MainPage />
+        </div>
+        <RightSide />
       </div>
-      <MainPage /> 
-      <div style={rightSectionStyle}>
-        <AdmissionTicket />
-        <button onClick={handleRightArrowClick}>
-          <img src="../../public/images/rightarrow_.png" alt="Right Arrow" style={arrowStyle} />
-        </button>
-      </div>
-
-    </div>
-
+    </Router>
   );
 };
+
 
 export default App;

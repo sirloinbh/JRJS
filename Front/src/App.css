@@ -1,4 +1,10 @@
-/* CSS Reset */
+@font-face {
+  font-family: 'ChosunSm';
+  src: url('/fonts/ChosunSm.ttf') format('truetype');
+}
+
+
+/* CSS Reset */ */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -16,7 +22,7 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
+    font-family: 'ChosunSM',sans-serif;
     vertical-align: baseline;
 }
 
@@ -26,8 +32,12 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+
 body {
     line-height: 1;
+    background-image: url('/images/oak-wooden-textured-design-background.jpg');
+    background-size: cover;
+    font-family: 'ChosunSm',sans-serif;
 }
 
 ol, ul {
@@ -48,3 +58,49 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+@keyframes pageTurnLeft {
+    0% {
+      transform: rotateY(180deg) translateX(0) rotateZ(0deg);
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+    }
+    50% {
+      transform: rotateY(90deg) translateX(50%) rotateZ(-10deg);
+      box-shadow: 1000px 100px 600px rgba(0, 0, 0, 0.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: rotateY(0deg) translateX(0%) rotateZ(0deg);
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 1;
+    }
+  }
+  
+  .page-turn-left {
+    animation: pageTurnLeft 2s ease forwards;
+  }
+  
+  @keyframes pageTurnRight {
+    0% {
+      transform: rotateY(-180deg) translateX(0) rotateZ(0deg);
+      box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+    }
+    50% {
+      transform: rotateY(-90deg) translateX(-50%) rotateZ(10deg);
+      box-shadow: -1000px 100px 600px rgba(0, 0, 0, 0.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: rotateY(0deg) translateX(0%) rotateZ(0deg);
+      box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 1;
+    }
+  }
+  
+  .page-turn-right {
+    animation: pageTurnRight 2s ease forwards;
+  }
+  
+

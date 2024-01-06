@@ -1,29 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BasicButton } from '../../designs/basics/buttons';
+import FrontEnd from './frontEnd';
+import BackEnd from './backEnd';
 
 const CategoryContainer: React.FC = () => {
+
+  const [showFrontEnd, setShowFrontEnd] = useState(false);
+  const [showBackEnd, setShowBackEnd] = useState(false); 
+
   const containerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'space-between', // 요소들을 양쪽 끝으로 분산
     padding: '10px',
-    margin: '10px 0'
+    width : '500px'
   };
 
   const handleFrontEndClick = () => {
-    console.log('프론트 엔드 클릭');
-    // 프론트 엔드 관련 로직 또는 컴포넌트 렌더링
+    setShowFrontEnd(true);
+    setShowBackEnd(false);
   };
 
   const handleBackEndClick = () => {
-    console.log('백 엔드 클릭');
-    // 백 엔드 관련 로직 또는 컴포넌트 렌더링
+    setShowBackEnd(true);
+    setShowFrontEnd(false);
   };
 
+  const handleBack = () => {
+    setShowFrontEnd(false);
+    setShowBackEnd(false); // FrontEnd 컴포넌트에서 뒤로가기를 누를 때 실행될 로직
+  };
+
+
   return (
-    <div style={containerStyle}>
-      <button onClick={handleFrontEndClick}>프론트 엔드</button>
-      <button onClick={handleBackEndClick}>백 엔드</button>
+    <div>
+      {showFrontEnd ? (
+        <FrontEnd onBack={handleBack} />
+      ) : showBackEnd ? (
+        <BackEnd onBack={handleBack} />
+      ) : (
+        <div style={containerStyle}>
+          <BasicButton onClick={handleFrontEndClick}>프론트 엔드</BasicButton>
+          <BasicButton onClick={handleBackEndClick}>백 엔드</BasicButton>
+        </div>
+      )}
     </div>
   );
 };
+
 
 export default CategoryContainer;

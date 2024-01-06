@@ -19,7 +19,7 @@ export const HorizontalLine: React.FC<LineProps> = ({
 export const VerticalLine: React.FC<LineProps> = ({
   length = '100%',
   thickness = '2px',
-  color = 'black'
+  color = 'black',
 }) => {
-  return <div style={{ height: length, width: thickness, backgroundColor: color }} />;
+  return <div style={{ height: length, width: thickness, backgroundColor: color, alignSelf: 'flex-start' }} />;
 };

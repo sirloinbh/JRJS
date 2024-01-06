@@ -1,65 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HorizontalLine , VerticalLine } from '../../designs/basics/lines';
 import QuestionsContainer from '../../components/problems/QuestionsContainer';
+import Header from '../../components/Header/Header';
+import SubjectTimeDisplay from '../../components/Header/SubjectTimeDisplay';
+import { BorderedBox } from '../../designs/basics/boxes';
+import { useLocation } from 'react-router-dom';
 
 
-const TestPage: React.FC = () => {
+const TestPage1: React.FC = () => {
+  const [animationClass, setAnimationClass] = useState("page");
+  const location = useLocation();
+
+  useEffect(() => {
+    const className = location.state?.from === '/test2' ? 'page-turn-left' : 'page-turn-right';
+    setAnimationClass(className);
+  }, [location.state]);
+
   const pageStyle: React.CSSProperties = {
-    fontFamily: '"Malgun Gothic", sans-serif',
-    textAlign: 'center',
-    padding: '20px',
+    backgroundColor: '#f2f2f2f1',
+    padding: '40px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    maxWidth: '60vw', // 화면 가로 너비의 반
+    lineHeight: '1.8',
+    height: '90vh',
+    border: '1px solid lightgray' ,// 검정색 테두리 추가
+    marginTop: '1.5vh'
   };
 
-  const boxStyle: React.CSSProperties = {
-    border: '1px solid black',
-    padding: '10px',
-    display: 'inline-block',
-    margin: '10px'
-  };
-
-  const headerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between', // 양쪽 끝으로 요소를 분산
-    alignItems: 'center',
-    margin: '10px'
-  };
   const sectionStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'space-around', // 요소들을 균등하게 분산
     alignItems: 'center',
-    margin: '20px 0'
+    margin: '0px',
+  };
+
+  const centerStyle: React.CSSProperties = {
+    display: 'flex', // Flex 컨테이너 적용
+    justifyContent: 'center', // 가로축 중앙 정렬
+    width: '100%', // 너비를 100%로 설정
   };
 
   return (
-    <div style={pageStyle}>
-      <div style={headerStyle}>
-        <div></div>
-        <h1>크래프톤 정글 시험 문제지</h1>
-        <div>1</div> {/* 여기에 번호 추가 */}
-      </div>
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={boxStyle}>제 1교시</div>
-        <div>
-          <h2>자바스크립트 영역</h2>
-        </div>
-        <div style={boxStyle}>짝수형</div>
-      </div>
+    <div className={`page ${animationClass}`} style={pageStyle}>
+      <Header pageNumber={2} />
+      <SubjectTimeDisplay />
       <HorizontalLine/>
-      <div>
-        {/* 세로로 분리된 섹션 */}
-        <div style={sectionStyle}>
-            <div style={{ width: '40%' }}>
-                <QuestionsContainer />
-            </div>
-            <VerticalLine length="30vh" color="black" />
-            <div style={{ width: '40%' }}>
-                <QuestionsContainer />
-            </div>
+      <div style={sectionStyle}>
+        <div style={{ width: '40%' }}>
+          <QuestionsContainer />
         </div>
+        <VerticalLine length="65vh" color="black" />
+        <div style={{ width: '40%' }}>
+          <QuestionsContainer />
+        </div>
+      </div>
+      <div style={centerStyle}>
+        <BorderedBox style={{width: '7%',textAlign: 'center'}}>2/7</BorderedBox> {/* 페이지 숫자 표시 */}
       </div>
     </div>
   );
 };
 
-export default TestPage;
+export default TestPage1;

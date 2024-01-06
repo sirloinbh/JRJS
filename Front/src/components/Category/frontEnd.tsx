@@ -1,22 +1,39 @@
-import React from 'react';
+import React , { useState } from 'react';
+import { BasicButton } from '../../designs/basics/buttons';
+import ExamNumber1 from './HTML_CSS/examNumber1';
+import ExamNumber2 from './JavaScript/examNumber2';
+import ExamNumber3 from './React/examNumber3';
 
-const FrontEnd: React.FC = () => {
+
+const FrontEnd: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+
   const handleClick = (category: string) => {
-    console.log(`${category} 버튼 클릭`);
-    // 여기에 각 카테고리에 맞는 로직을 구현할 수 있습니다.
+    setSelectedCategory(category);
   };
 
-  const handleBack = () => {
-    console.log('뒤로가기 클릭');
-    // 뒤로가기 로직 구현
+  const containerStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'space-between', // 요소들을 양쪽 끝으로 분산
+    flexDirection: 'row',
+    padding: '10px',
+    width : '750px'
   };
 
   return (
-    <div style={{ padding: '10px' }}>
-      <button onClick={() => handleClick('HTML/CSS')} style={{ margin: '10px 0' }}>HTML/CSS</button>
-      <button onClick={() => handleClick('JavaScript')} style={{ margin: '10px 0' }}>JavaScript</button>
-      <button onClick={() => handleClick('React')} style={{ margin: '10px 0' }}>React</button>
-     <button onClick={handleBack} style={{ margin: '10px 0' }}>뒤로가기</button>
+    <div>
+      {selectedCategory === 'HTML/CSS' && <ExamNumber1 onBack={() => setSelectedCategory('')} />}
+      {selectedCategory === 'JavaScript' && <ExamNumber2 onBack={() => setSelectedCategory('')} />}
+      {selectedCategory === 'React' && <ExamNumber3 onBack={() => setSelectedCategory('')} />}
+      {selectedCategory === '' && (
+        <div style={containerStyle}>
+          <BasicButton onClick={() => handleClick('HTML/CSS')}>HTML/CSS</BasicButton>
+          <BasicButton onClick={() => handleClick('JavaScript')}>JavaScript</BasicButton>
+          <BasicButton onClick={() => handleClick('React')}>React</BasicButton>
+          <BasicButton onClick={onBack}>뒤로가기</BasicButton>
+        </div>
+      )}
     </div>
   );
 };

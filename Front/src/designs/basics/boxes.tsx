@@ -23,5 +23,5 @@ export const RoundedBox: React.FC<BoxProps> = ({ children, style }) => {
 
 // 테두리가 있는 박스
 export const BorderedBox: React.FC<BoxProps> = ({ children, style }) => {
-  return <div style={{ border: '2px solid black', ...style }}>{children}</div>;
+  return <div style={{ border: '1px solid black', ...style }}>{children}</div>;
 };
