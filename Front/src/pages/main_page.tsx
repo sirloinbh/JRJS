@@ -9,7 +9,6 @@ import TestPage4 from './test_pages/test_page4';
 import TestPage5 from './test_pages/test_page5';
 import CompletePage from './cover_pages/comlete_page';
 
-
 const MainPage: React.FC = () => {
 
 
@@ -24,7 +23,7 @@ const MainPage: React.FC = () => {
 
   return (
 
-    <div style={pageStyle}>
+    <div  style={pageStyle}>
       <Routes>
         <Route path="/" element={<CoverPage />} />
         <Route path="/test1" element={<TestPage1 />} />

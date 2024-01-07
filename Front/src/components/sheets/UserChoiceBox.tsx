@@ -2,12 +2,23 @@ import React from 'react';
 import { BorderedBox } from '../../designs/basics/boxes';
 import { BasicButton } from '../../designs/basics/buttons';
 import { useNavigate } from 'react-router-dom'; 
+import { useDispatch } from 'react-redux';
+import { resetCategories } from '../../store/categorySlice';
+import { logout } from '../../store/userSlice';
 
 const UserChoiceBox: React.FC = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(resetCategories());
+    dispatch(logout()); // 로그아웃 처리
+    navigate('/'); // 루트 경로('/')로 네비게이트
+  };
 
   const handleNavigateHome = () => {
+    dispatch(resetCategories());
     navigate('/'); // 루트 경로('/')로 네비게이트
   };
 
@@ -26,7 +37,7 @@ const UserChoiceBox: React.FC = () => {
   return (
     <BorderedBox style={boxStyle}>
       <BasicButton onClick={handleNavigateHome}>다른 문제 풀러 가기</BasicButton>
-      <BasicButton onClick={handleNavigateHome}>시험 끝내기</BasicButton>
+      <BasicButton onClick={handleLogout}>시험 끝내기</BasicButton>
     </BorderedBox>
   );
 };

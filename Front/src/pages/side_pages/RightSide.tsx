@@ -1,10 +1,13 @@
 // @Rightside.tsx
 import React from 'react';
 import { BorderlessButton } from '../../designs/basics/buttons';
-import AdmissionPage from '../user_pages/admission_page';
+import AdmissionTicket from '../../components/admissionTickets/admissionTicket';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const RightSide: React.FC = () => {
+interface RightSideProps {
+  className?: string;
+}
+const RightSide: React.FC<RightSideProps> = ({ className }) => {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,16 +24,13 @@ const RightSide: React.FC = () => {
       const arrowStyle: React.CSSProperties = {
         width: '50px', 
         height: '50px', 
-        opacity: location.pathname === '/complete' ? 0 : 1, // /complete 페이지일 때 투명하게
-        pointerEvents: location.pathname === '/complete' ? 'none' : 'auto', // /complete 페이지일 때 클릭 비활성화
+        opacity: ( location.pathname === '/complete' || location.pathname === '/') ? 0 : 1, // /complete 페이지일 때 투명하게
+        pointerEvents: ( location.pathname === '/complete' || location.pathname === '/') ? 'none' : 'auto', // /complete 페이지일 때 클릭 비활성화
       };
     
 
   const handleRightArrowClick = () => {
     switch (location.pathname) {
-      case '/':
-        navigate('/test1',{ state: { from: location.pathname } });
-        break;
       case '/test1':
         navigate('/test2',{ state: { from: location.pathname } });
         break;
@@ -53,8 +53,8 @@ const RightSide: React.FC = () => {
   };
 
   return (
-    <div style={rightSideStyle}>
-      <AdmissionPage />
+    <div className={className} style={rightSideStyle}>
+      <AdmissionTicket />
       <BorderlessButton onClick={handleRightArrowClick} style={{ opacity: arrowStyle.opacity, pointerEvents: arrowStyle.pointerEvents }}>
         <img src="../../public/images/rightarrow_.png" alt="Right Arrow" style={arrowStyle} />
       </BorderlessButton>

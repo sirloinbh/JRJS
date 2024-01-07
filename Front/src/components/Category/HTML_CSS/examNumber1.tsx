@@ -2,13 +2,23 @@ import React from 'react';
 import { BasicButton } from '../../../designs/basics/buttons';
 import { useNavigate } from 'react-router-dom'; 
 
+import { useDispatch } from 'react-redux';
+import { setThirdCategory, setSecondCategory } from '../../../store/categorySlice';
+
 const ExamNumber1: React.FC<{ onBack: () => void }> = ({ onBack }) =>{
 
   const navigate = useNavigate(); 
+  const dispatch = useDispatch(); 
 
   const handleClick = (examNumber: number) => {
     console.log(`${examNumber}번 문제지 클릭`);
+    dispatch(setThirdCategory(String(examNumber))); 
     navigate('/test1');
+  };
+
+  const handleBack = () => {
+    dispatch(setSecondCategory('')); // 두 번째 카테고리 초기화
+    onBack(); // 상위 컴포넌트로 뒤로가기 액션 전파
   };
 
   const containerStyle: React.CSSProperties = {
@@ -26,7 +36,7 @@ const ExamNumber1: React.FC<{ onBack: () => void }> = ({ onBack }) =>{
           {num}번 문제지
         </BasicButton>
       ))}
-      <BasicButton onClick={onBack} style={{ margin: '10px 0' }}>뒤로가기</BasicButton>
+      <BasicButton onClick={handleBack} style={{ margin: '10px 0' }}>뒤로가기</BasicButton>
     </div>
   );
 };

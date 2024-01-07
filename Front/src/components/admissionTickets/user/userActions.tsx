@@ -67,9 +67,9 @@ const UserActions: React.FC = () => {
           {showPasswordRecovery && <PasswordRecovery onRecoverySuccess={handleRecoverySuccess}/>}
           {!showSignUp && !showLogin && !showPasswordRecovery && (
             <>
-              <BasicButton style={{ backgroundColor:'white', width: '100px', height: '40px', fontSize:'14px'}} onClick={handleSignUp} number={1}>회원가입</BasicButton>
-              <BasicButton style={{ backgroundColor:'white', width: '100px', height: '40px', fontSize:'14px' }} onClick={handleLogin} number={2}>로그인</BasicButton>
-              <BasicButton style={{ backgroundColor:'white', width: '110px', height: '40px', fontSize:'12px' }} onClick={handlePasswordRecovery} number={3}>비밀번호 찾기</BasicButton>
+              <BasicButton style={{  width: '100px', height: '40px', fontSize:'14px'}} onClick={handleSignUp} number={1}>회원가입</BasicButton>
+              <BasicButton style={{  width: '100px', height: '40px', fontSize:'14px' }} onClick={handleLogin} number={2}>로그인</BasicButton>
+              <BasicButton style={{  padding: '0', width: '100px', height: '40px', fontSize:'14px' }} onClick={handlePasswordRecovery} number={3}>비밀번호 찾기</BasicButton>
             </>
           )}
         </div>

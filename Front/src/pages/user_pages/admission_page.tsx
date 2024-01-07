@@ -2,7 +2,11 @@ import React from 'react';
 import UserActions from '../../components/admissionTickets/user/userActions';
 import { BorderedBox } from '../../designs/basics/boxes';
 
-const AdmissionPage: React.FC = () => {
+interface AdmissionPageProps {
+  className?: string;
+}
+
+const AdmissionPage: React.FC<AdmissionPageProps> = ({ className }) => {
     const boxStyle: React.CSSProperties = {
         padding: '10px',
         margin: '0px',
@@ -14,15 +18,18 @@ const AdmissionPage: React.FC = () => {
         alignItems: 'center',    // 가운데 정렬
         justifyContent: 'space-evenly', // 간격을 균등하게 분배
         gap: '0px' ,             // 버튼 사이의 간격
-        backgroundColor: 'white',
-        boxShadow: '10px 10px 30px rgba(0, 0, 0, 0.5)'
+        backgroundColor: '#f2f2f2f1',
+        boxShadow: '10px 10px 30px rgba(0, 0, 0, 0.5)',
+        border: '1px solid lightgray' ,
       };
     
 
   return (
-    <BorderedBox style={boxStyle} >
-        <UserActions/>
+    <div className = { className }>
+    <BorderedBox  style={boxStyle} >
+        <UserActions />
     </BorderedBox>
+    </div>
   );
 };
 

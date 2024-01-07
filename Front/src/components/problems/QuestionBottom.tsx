@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BasicButton } from '../../designs/basics/buttons';
+import AnswerForm from '../answers/answerForm';
+import ModalBottom from '../../designs/answer/ModalBottom';
+import AnswerList from '../answers/AnswerList';
 
 interface QuestionComponentProps {
   number: number; // 문제 번호
@@ -8,6 +11,23 @@ interface QuestionComponentProps {
 }
 
 const QuestionBottom: React.FC<QuestionComponentProps> = ({ number, difficulty, text }) => {
+
+  const [showModal, setShowModal] = useState(false);
+  const [currentModal, setCurrentModal] = useState<'answerForm' | 'answerList' | null>(null);
+
+  const handleOpenAnswerForm = () => {
+    setShowModal(true);
+    setCurrentModal('answerForm');
+  };
+
+  const handleOpenAnswerList = () => {
+    setShowModal(true);
+    setCurrentModal('answerList');
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setCurrentModal(null);
+  };
 
   const containerStyle: React.CSSProperties = {
     minHeight: '380px', // 전체 컴포넌트의 최소 세로 길이 설정
@@ -44,8 +64,15 @@ const QuestionBottom: React.FC<QuestionComponentProps> = ({ number, difficulty, 
       </div>
 
       <div style={buttonStyle}>
-        <BasicButton>답안지 작성</BasicButton>
+      <BasicButton onClick={handleOpenAnswerForm}>답안지 작성</BasicButton>
+      <BasicButton onClick={handleOpenAnswerList}>다른답 보기</BasicButton> 
       </div>
+      {showModal && (
+        <ModalBottom onClose={handleCloseModal}>
+          {currentModal === 'answerForm' && <AnswerForm />}
+          {currentModal === 'answerList' && <AnswerList />}
+        </ModalBottom>
+      )}
     </div>
   );
 };

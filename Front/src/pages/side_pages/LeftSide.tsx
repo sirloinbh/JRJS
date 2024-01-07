@@ -4,7 +4,10 @@ import IconContainer from '../../components/leftside/IconContainer';
 import { BorderlessButton } from '../../designs/basics/buttons';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const LeftSide: React.FC = () => {
+interface LeftSideProps {
+  className?: string;
+}
+const LeftSide: React.FC<LeftSideProps> = ({ className }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,14 +23,11 @@ const LeftSide: React.FC = () => {
   const arrowStyle: React.CSSProperties = {
     width: '50px', 
     height: '50px', 
-    opacity: location.pathname === '/' ? 0 : 1, // 기본 페이지일 때 투명하게
+    opacity: (location.pathname === '/' || location.pathname === '/test1')? 0 : 1, // 기본 페이지일 때 투명하게
     pointerEvents: location.pathname === '/' ? 'none' : 'auto', // 기본 페이지일 때 클릭 비활성화
   };
   const handleLeftArrowClick = () => {
     switch (location.pathname) {
-      case '/test1':
-        navigate('/',{ state: { from: location.pathname } });
-        break;
       case '/test2':
         navigate('/test1',{ state: { from: location.pathname } });
         break;
@@ -51,7 +51,7 @@ const LeftSide: React.FC = () => {
 
 
   return (
-    <div style={leftSideStyle}>
+    <div className = { className } style={leftSideStyle}>
       <IconContainer />
       <BorderlessButton onClick={handleLeftArrowClick} style={{ opacity: arrowStyle.opacity, pointerEvents: arrowStyle.pointerEvents }}>
         <img src="../../public/images/leftarrow.png" alt="Left Arrow" style={arrowStyle} />

@@ -3,14 +3,14 @@ import { BorderlessButton } from '../../designs/basics/buttons';
 
 const IconContainer: React.FC = () => {
   const containerStyle: React.CSSProperties = {
-    border: '1px solid black',
     padding: '0px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '100px',
-    backgroundColor: 'white',
-    boxShadow: '10px 10px 30px rgba(0, 0, 0, 0.5)'
+    backgroundColor: '#f2f2f2f1',
+    boxShadow: '10px 10px 30px rgba(0, 0, 0, 0.5)',
+    borderBlock: '1px solid lightgray' ,
   };
 
   const IconStyle: React.CSSProperties = {

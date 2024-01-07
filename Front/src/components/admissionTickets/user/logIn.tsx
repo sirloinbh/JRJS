@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { EmailInput, PasswordInput } from '../../../designs/basics/forms';
 import { BasicButton } from '../../../designs/basics/buttons';
-
+import { useDispatch } from 'react-redux';
+import { login } from '../../../store/userSlice';
+interface LoginProps {
+  onLoginSuccess?: () => void;
+}
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,6 +18,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     if (onLoginSuccess) {
       onLoginSuccess();
     }
+    dispatch(login());
   };
 
   const containerStyle: React.CSSProperties = {

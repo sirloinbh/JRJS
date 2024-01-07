@@ -19,14 +19,15 @@ const CoverPage: React.FC = () => {
   }, [location.state]);
 
   const pageStyle: React.CSSProperties = {
-    backgroundColor: '#f2f2f2f1',
+    
     padding: '40px',
-    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+
     maxWidth: '50vw', // 화면 가로 너비의 반
     lineHeight: '1.8',
     height: '90vh',
-    border: '1px solid lightgray' ,// 검정색 테두리 추가
-    // marginTop: '1.5vh'
+    border: '1px solid lightgray' ,
+    backgroundColor: '#f2f2f2f1',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
 
   };
 

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFirstCategory, setSecondCategory  } from '../../store/categorySlice';
+
 import { BasicButton } from '../../designs/basics/buttons';
 import FrontEnd from './frontEnd';
 import BackEnd from './backEnd';
 
 const CategoryContainer: React.FC = () => {
+  const dispatch = useDispatch();
+  const { firstCategory, secondCategory } = useSelector((state: RootState) => state.category);
+
 
   const [showFrontEnd, setShowFrontEnd] = useState(false);
   const [showBackEnd, setShowBackEnd] = useState(false); 
@@ -18,16 +24,23 @@ const CategoryContainer: React.FC = () => {
   const handleFrontEndClick = () => {
     setShowFrontEnd(true);
     setShowBackEnd(false);
+    dispatch(setFirstCategory('프론트'));
   };
 
   const handleBackEndClick = () => {
     setShowBackEnd(true);
     setShowFrontEnd(false);
+    dispatch(setFirstCategory('백'));
   };
 
   const handleBack = () => {
     setShowFrontEnd(false);
-    setShowBackEnd(false); // FrontEnd 컴포넌트에서 뒤로가기를 누를 때 실행될 로직
+    setShowBackEnd(false); 
+    if (secondCategory) {
+      dispatch(setSecondCategory(''));
+    } else if (firstCategory) {
+      dispatch(setFirstCategory(''));
+    }
   };
 
 
