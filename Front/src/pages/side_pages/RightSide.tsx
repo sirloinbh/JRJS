@@ -30,6 +30,11 @@ const RightSide: React.FC<RightSideProps> = ({ className }) => {
     
 
   const handleRightArrowClick = () => {
+
+    // 오디오 재생
+    const audio = new Audio('/audios/booksound2.wav');
+    audio.play();
+
     switch (location.pathname) {
       case '/test1':
         navigate('/test2',{ state: { from: location.pathname } });

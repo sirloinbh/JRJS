@@ -9,9 +9,9 @@ const AdmissionTicket: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const name = '홍길동'; // 예시 이름
-  const examNumber = '123456'; // 예시 수험 번호
-  const imagePath = '../../../public/images/human.png'; // 예시 이미지 경로
+  const name = '홍길동';
+  const examNumber = '123456';
+  const imagePath = '../../../public/images/human.png';
 
   const handleLogout = () => {
     console.log('로그아웃');
@@ -23,37 +23,53 @@ const AdmissionTicket: React.FC = () => {
   const ticketStyle: React.CSSProperties = {
     display: 'flex',
     padding: '10px',
-    width: '300px',
+    width: '350px',
+    height : '150px',
     fontSize: '20px',
-    border: '1px solid lightgray' ,
+    border: '1px solid lightgray',
     backgroundColor: '#f2f2f2f1',
     boxShadow: '10px 10px 30px rgba(0, 0, 0, 0.5)',
   };
 
-  const photoStyle: React.CSSProperties = {
+  const photoBoxStyle: React.CSSProperties = {
+    border: '1px solid black',
+    padding: '5px',
     marginRight: '20px',
     display: 'flex',
-    flexDirection:'column',
+    flexDirection: 'column',
     alignItems: 'center',
-
   };
 
-  const infoStyle: React.CSSProperties = {
-    textAlign: 'center',
+  const individualBoxStyle: React.CSSProperties = {
+    border: '1px solid black',
+    padding: '4px',
+    margin: '5px 0px',
+    display: 'inline-block',
   };
+
+  const createIndividualBoxes = (text: string) => 
+    text.split('').map((char, index) => (
+      <div key={index} style={individualBoxStyle}>{char}</div>
+    ));
 
   return (
     <div style={ticketStyle}>
-      <div style={photoStyle}>
-        <strong>사진</strong>
-        <img src={imagePath} alt="Student" style={{ display: 'block', maxWidth: '100px', maxHeight: '100px', margin: '10px 0 10px 0' }} />
-      </div>
-      <div style={infoStyle}>
-        <div style = {{ textAlign: 'left'}}>
-          <div style ={{ margin: '10px 0 10px 0'}}><strong>이름: </strong>{name}</div>
-          <div style ={{ margin: '10px 0 10px 0'}}><strong>수험 번호: </strong>{examNumber}</div>
+      <div>
+        <div style = {{ margin: "10px 35px"}}>사진</div>
+        <div style={photoBoxStyle}>
+          <img src={imagePath} alt="Student" style={{ maxWidth: '100px', maxHeight: '100px' }} />
         </div>
-        <BasicButton onClick={handleLogout} style={{ width: '100px', height: '40px', fontSize:'14px' }}>로그아웃</BasicButton>
+      </div>
+      <div>
+        <div style={{ display: 'flex' }}>
+          <div style = {{ margin: '10px 10px'}}>이름</div>
+          {createIndividualBoxes(name)}
+        </div>
+        <div style={{ display: 'flex' }}>
+          <div style = {{ margin: '10px 10px'}} >수험 번호 </div>
+          {createIndividualBoxes(examNumber)}
+        </div>
+        <BasicButton onClick={handleLogout} style={{ margin: '20px 50px', width: '100px', height: '40px', fontSize:'14px' }}>로그아웃</BasicButton>
       </div>
     </div>
   );

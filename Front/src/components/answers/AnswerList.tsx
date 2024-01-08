@@ -44,9 +44,40 @@ const AnswerList: React.FC = () => {
   const navigate = (direction: number) => {
     setCurrentPage((prev) => Math.max(0, Math.min(prev + direction, totalPages - 1)));
   };
+  const navigationButtonStyle: React.CSSProperties = {
+    flex: 1,
+    cursor: 'pointer',
+    padding: '10px 20px',
+    margin: '10px 10px',
+    fontSize: '16px',
+    border: 'none',
+    background: 'transparent',
+    borderRadius: '4px',
+    boxShadow: 'none',
+  };
+
+  const longButtonStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: '10px 20px',
+    margin: '5px 0',
+    fontSize: '16px',
+    border: '1px solid #ddd',
+    backgroundColor: '#fff',
+    borderRadius: '4px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    width: '100%', // Ensure full width
+  };
+
+  const arrowStyle = (disabled: boolean): React.CSSProperties => ({
+    width: '20px',
+    height: '20px',
+    opacity: disabled ? 0.5 : 1,
+  });
 
   return (
-    <div style={{ padding: '10px' }}>
+    <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {selectedAnswer ? (
         <AnswerViewComponent answer={selectedAnswer} onClose={handleCloseView} />
       ) : (
@@ -57,23 +88,40 @@ const AnswerList: React.FC = () => {
               <LongButton
                 key={answer.id}
                 onClick={() => handleAnswerClick(answer)}
-                style={{ display: 'block', margin: '0 0', width: '100%' }}
+                style={longButtonStyle}
               >
-                <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '10px' }}>
+                <div>
                   <div style={{ fontWeight: 'bold', marginRight: '10px' }}>{answer.user}</div>
                   <div>{answer.content}</div>
                 </div>
               </LongButton>
             ))}
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            <button onClick={() => navigate(-1)} disabled={currentPage === 0}>◀ 이전</button>
-            <button onClick={() => navigate(1)} disabled={currentPage === totalPages - 1}>다음 ▶</button>
+          <div style={{ display: 'flex', width: '20%', justifyContent: 'center', margin: '10px 0' }}>
+            <button 
+              onClick={() => navigate(-1)} 
+              disabled={currentPage === 0}
+              style={navigationButtonStyle}
+            >
+              <img src="../../public/images/leftarrow.png"
+               alt="Left Arrow"
+               style={arrowStyle(currentPage === 0)} 
+              />
+            </button>
+            <button 
+              onClick={() => navigate(1)} 
+              disabled={currentPage === totalPages - 1}
+              style={navigationButtonStyle}
+            >
+              <img src="../../public/images/rightarrow_.png"
+               alt="Right Arrow"
+               style={arrowStyle(currentPage === totalPages - 1)} 
+              />
+            </button>
           </div>
         </>
       )}
     </div>
   );
 };
-
 
 export default AnswerList;

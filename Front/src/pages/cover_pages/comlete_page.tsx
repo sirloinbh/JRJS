@@ -15,6 +15,15 @@ const CompletePage: React.FC = () => {
 
     const className = location.state?.from === '/' ? 'page-turn-left' : 'page-turn-right';
     setAnimationClass(className);
+
+    // 페이지가 로드될 때 오디오 재생
+    const audio = new Audio('/audios/outro.mp3');
+    audio.play();
+        
+    // 컴포넌트가 언마운트될 때 오디오 정지
+    return () => {
+      audio.pause();
+    };
   }, [location.state]);
 
   const pageStyle: React.CSSProperties = {

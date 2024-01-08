@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HorizontalLine , VerticalLine } from '../../designs/basics/lines';
-import QuestionsContainer from '../../components/problems/QuestionsContainer';
+import QuestionsContainerLeft from '../../components/problems/QuestionsContainerLeft';
+import QuestionsContainerRight from '../../components/problems/QuestionsContainerRight';
 import Header from '../../components/Header/Header';
 import SubjectTimeDisplay from '../../components/Header/SubjectTimeDisplay';
 import { BorderedBox } from '../../designs/basics/boxes';
@@ -48,11 +49,11 @@ const TestPage3: React.FC = () => {
         {/* 세로로 분리된 섹션 */}
         <div style={sectionStyle}>
             <div style={{ width: '40%' }}>
-                <QuestionsContainer />
+                <QuestionsContainerLeft />
             </div>
             <VerticalLine length="65vh" color="black" />
             <div style={{ width: '40%' }}>
-                <QuestionsContainer />
+                <QuestionsContainerRight />
             </div>
         </div>
       </div>

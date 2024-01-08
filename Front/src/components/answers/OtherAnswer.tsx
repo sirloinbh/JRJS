@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BasicButton } from '../../designs/basics/buttons';
 import { TextInput } from '../../designs/basics/forms';
 
-// 대답과 댓글의 예시 데이터
 const answerContent = "여기에 다른 사람의 답안지 내용이 들어갑니다.";
 const comments = [
   { id: 1, user: '사용자1', content: '댓글 내용 1' },
@@ -19,37 +18,35 @@ const AnswerViewComponent: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px' }}>
-      {/* 왼쪽 답안지 부분 */}
-      <div style={{ width: '50%', border: '1px solid #ddd', padding: '10px' }}>
-        {answerContent}
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: '10px' }}>
 
-      {/* 오른쪽 댓글 부분 */}
-      <div style={{ width: '45%' }}>
+      {/* Top Row: Answer content and comment list */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', height : '320px' }}>
+        {/* Answer content */}
+        <div style={{ width: '50%', border: '1px solid #ddd', padding: '10px' }}>
+          {answerContent}
+        </div>
 
-        
-        {/* 댓글 목록 */}
-        <div style={{ maxHeight: '400px', overflowY: 'auto', marginBottom: '20px' }}>
+        {/* Comment list */}
+        <div style={{ width: '45%', maxHeight: '400px', overflowY: 'auto' }}>
           {comments.map(comment => (
             <div key={comment.id} style={{ marginBottom: '10px', border: '1px solid #ddd', padding: '10px' }}>
-              <div style={{ fontWeight: 'bold' }}>{comment.user}</div>
-              <div>{comment.content}</div>
+              <strong>{comment.user}</strong>: {comment.content}
             </div>
           ))}
         </div>
+      </div>
 
-        {/* 댓글 입력 폼 */}
-        <div>
-          <TextInput
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="댓글을 입력하세요..."
-          />
-          <BasicButton onClick={handleSubmitComment}>
-            댓글달기
-          </BasicButton>
-        </div>
+      {/* Bottom Row: Input form and submit button */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <TextInput
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="댓글을 입력하세요..."
+        />
+        <BasicButton onClick={handleSubmitComment}>
+          댓글달기
+        </BasicButton>
       </div>
     </div>
   );

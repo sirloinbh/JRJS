@@ -27,6 +27,9 @@ const LeftSide: React.FC<LeftSideProps> = ({ className }) => {
     pointerEvents: location.pathname === '/' ? 'none' : 'auto', // 기본 페이지일 때 클릭 비활성화
   };
   const handleLeftArrowClick = () => {
+    // 오디오 재생
+    const audio = new Audio('/audios/booksound2.wav');
+    audio.play();
     switch (location.pathname) {
       case '/test2':
         navigate('/test1',{ state: { from: location.pathname } });

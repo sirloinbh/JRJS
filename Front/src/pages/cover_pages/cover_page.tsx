@@ -16,6 +16,14 @@ const CoverPage: React.FC = () => {
     // test1에서 오는 경우 왼쪽으로 회전, 그 외에는 오른쪽으로 회전
     const className = location.state?.from === '/test1' ? 'page-turn-left' : 'page-turn-right';
     setAnimationClass(className);
+    // 페이지가 로드될 때 오디오 재생
+    const audio = new Audio('/audios/intro2.mp3');
+    audio.play();
+    
+    // 컴포넌트가 언마운트될 때 오디오 정지
+    return () => {
+      audio.pause();
+    };
   }, [location.state]);
 
   const pageStyle: React.CSSProperties = {
