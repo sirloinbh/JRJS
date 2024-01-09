@@ -7,14 +7,24 @@ import SubjectTimeDisplay from '../../components/Header/SubjectTimeDisplay';
 import { BorderedBox } from '../../designs/basics/boxes';
 import { useLocation } from 'react-router-dom';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { setPageNumber } from '../../store/pageSlice';
+import { RootState } from '../../store/store';
+
 const TestPage5: React.FC = () => {
     const [animationClass, setAnimationClass] = useState("page");
     const location = useLocation();
 
+    const dispatch = useDispatch();
+    const pageNumber = useSelector((state:RootState) => state.page.pageNumber);
+
     useEffect(() => {
-      const className = location.state?.from === '/complete' ? 'page-turn-left' : 'page-turn-right';
+      const className = location.state?.from === '/test2' ? 'page-turn-left' : 'page-turn-right';
       setAnimationClass(className);
-    }, [location.state]);
+  
+      // 페이지 번호를 업데이트
+      dispatch(setPageNumber(6));
+    }, [dispatch, location.state]);
 
   const pageStyle: React.CSSProperties = {
     backgroundColor: '#f2f2f2f1',
@@ -41,7 +51,7 @@ const TestPage5: React.FC = () => {
 
   return (
     <div className={`page ${animationClass}`} style={pageStyle}>
-      <Header pageNumber={6} />
+      <Header pageNumber={pageNumber} />
       <SubjectTimeDisplay />
       <HorizontalLine/>
       <div>

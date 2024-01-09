@@ -1,21 +1,34 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import { EmailInput, NameInput } from '../../../designs/basics/forms';
 import { BasicButton } from '../../../designs/basics/buttons';
 
 interface PasswordRecoveryProps {
   onRecoverySuccess?: () => void;
 }
+
 const PasswordRecovery: React.FC<PasswordRecoveryProps> = ({ onRecoverySuccess }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const handleSubmit = () => {
-    console.log('비밀번호 찾기 정보:', { name, email });
-    // 여기에 비밀번호 찾기 처리 로직을 추가할 수 있습니다.
-    if (onRecoverySuccess) {
-      onRecoverySuccess(); // 비밀번호 찾기 성공 후 처리 함수 호출
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('https://093f0bad-bef4-4db9-aec3-a0292b56fc60.mock.pstmn.io/passwordRecovery', {
+        name,
+        email
+      });
+
+      toast(response.data); // 응답 데이터를 토스트 메시지로 출력
+      if (onRecoverySuccess) {
+        onRecoverySuccess(); // 비밀번호 찾기 성공 후 처리
+      }
+    } catch (error) {
+      console.error('비밀번호 찾기 실패:', error);
+      toast.error('비밀번호 찾기에 실패했습니다.'); // 오류 토스트 메시지
     }
   };
+
   const containerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',

@@ -29,12 +29,12 @@ const BackEnd: React.FC<{ onBack: () => void }> = ({ onBack }) => {
   return (
     <div>
       {selectedCategory === 'Java' && <ExamNumber4 onBack={() => setSelectedCategory('')} />}
-      {selectedCategory === 'Node/Express.js' && <ExamNumber5 onBack={() => setSelectedCategory('')} />}
+      {selectedCategory === 'Node.js/Express.js' && <ExamNumber5 onBack={() => setSelectedCategory('')} />}
       {selectedCategory === 'Spring/SpringBoot' && <ExamNumber6 onBack={() => setSelectedCategory('')} />}
       {selectedCategory === '' && (
         <div style={ containerStyle }>
           <BasicButton onClick={() => handleClick('Java')} style={{ margin: '10px 0' }}>Java</BasicButton>
-          <BasicButton onClick={() => handleClick('Node/Express.js')} style={{ margin: '10px 0' }}>Node/Express.js</BasicButton>
+          <BasicButton onClick={() => handleClick('Node.js/Express.js')} style={{ margin: '10px 0' }}>Node.js/Express.js</BasicButton>
           <BasicButton onClick={() => handleClick('Spring/SpringBoot')} style={{ margin: '10px 0' }}>Spring/SpringBoot</BasicButton>
           <BasicButton onClick={onBack} style={{ margin: '10px 0' }}>뒤로가기</BasicButton>
         </div>

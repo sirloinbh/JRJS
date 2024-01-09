@@ -28,7 +28,7 @@ const LeftSide: React.FC<LeftSideProps> = ({ className }) => {
   };
   const handleLeftArrowClick = () => {
     // 오디오 재생
-    const audio = new Audio('/audios/booksound2.wav');
+    const audio = new Audio('/audios/booksound.wav');
     audio.play();
     switch (location.pathname) {
       case '/test2':

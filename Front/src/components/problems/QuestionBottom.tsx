@@ -69,7 +69,7 @@ const QuestionBottom: React.FC<QuestionComponentProps> = ({ number, difficulty, 
       </div>
       {showModal && (
         <ModalBottom onClose={handleCloseModal}>
-          {currentModal === 'answerForm' && <AnswerForm />}
+          {currentModal === 'answerForm' && <AnswerForm onClose={handleCloseModal}/>}
           {currentModal === 'answerList' && <AnswerList />}
         </ModalBottom>
       )}

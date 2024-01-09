@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { EmailInput, PasswordInput } from '../../../designs/basics/forms';
 import { BasicButton } from '../../../designs/basics/buttons';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../store/userSlice';
+
+import { toast } from 'react-toastify';
+
 interface LoginProps {
   onLoginSuccess?: () => void;
 }
@@ -11,14 +15,22 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('https://093f0bad-bef4-4db9-aec3-a0292b56fc60.mock.pstmn.io/logIn', {
+        email,
+        password
+      });
 
-  const handleSubmit = () => {
-    console.log('로그인 정보:', { email, password });
-    // 여기에 로그인 처리 로직을 추가할 수 있습니다.
-    if (onLoginSuccess) {
-      onLoginSuccess();
+      toast(response.data); // 응답을 토스트 메시지로 표시
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      }
+      dispatch(login());
+    } catch (error) {
+      console.error('로그인 실패:', error);
+      toast.error('로그인에 실패했습니다.'); // 오류를 토스트 메시지로 표시
     }
-    dispatch(login());
   };
 
   const containerStyle: React.CSSProperties = {

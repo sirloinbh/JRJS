@@ -1,20 +1,34 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { EmailInput, NameInput, PasswordInput } from '../../../designs/basics/forms';
 import { BasicButton } from '../../../designs/basics/buttons';
 
 interface SignUpProps {
   onSignUpSuccess?: () => void;
 }
+
 const SignUp: React.FC<SignUpProps> = ({ onSignUpSuccess }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
-    console.log('회원가입 정보:', { name, email, password });
-    // 여기에 회원가입 처리 로직을 추가할 수 있습니다.
-    if (onSignUpSuccess) {
-      onSignUpSuccess(); // 회원가입 성공 후 처리 함수 호출
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('https://093f0bad-bef4-4db9-aec3-a0292b56fc60.mock.pstmn.io/signUp', {
+        name,
+        email,
+        password
+      });
+
+      toast(response.data); // 응답을 토스트 메시지로 표시
+      if (onSignUpSuccess) {
+        onSignUpSuccess(); // 회원가입 성공 후 처리
+      }
+    } catch (error) {
+      console.error('회원가입 실패:', error);
+      toast.error('회원가입에 실패했습니다.'); // 오류를 토스트 메시지로 표시
     }
   };
 

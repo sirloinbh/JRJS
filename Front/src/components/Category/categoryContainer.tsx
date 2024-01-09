@@ -5,10 +5,11 @@ import { setFirstCategory, setSecondCategory  } from '../../store/categorySlice'
 import { BasicButton } from '../../designs/basics/buttons';
 import FrontEnd from './frontEnd';
 import BackEnd from './backEnd';
+import { RootState } from '../../store/store';
 
 const CategoryContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const { firstCategory, secondCategory } = useSelector((state: RootState) => state.category);
+  const { firstCategory, secondCategory} = useSelector((state: RootState) => state.category);
 
 
   const [showFrontEnd, setShowFrontEnd] = useState(false);

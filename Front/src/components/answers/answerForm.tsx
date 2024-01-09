@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BasicButton } from '../../designs/basics/buttons';
 import { TextAreaInput } from '../../designs/basics/forms';
 
-const AnswerForm: React.FC = () => {
+const AnswerForm: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
   const [answer, setAnswer] = useState('');
 
-  const handleSubmit = () => {
-    console.log(answer); // 여기에 댓글 제출 로직을 추가할 수 있습니다.
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('https://983ab1dc-e6c8-486e-807d-5c8e8bf44662.mock.pstmn.io/Answer', {
+        answer
+      });
+      if (onClose) onClose();
+      toast(response.data); // 응답을 토스트 메시지로 표시
+    } catch (error) {
+      console.error('답변 제출 실패:', error);
+      toast.error('답변 제출에 실패했습니다.'); // 오류를 토스트 메시지로 표시
+    }
   };
 
   const containerStyle: React.CSSProperties = {
