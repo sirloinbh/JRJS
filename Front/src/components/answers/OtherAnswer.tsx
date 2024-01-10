@@ -4,7 +4,11 @@ import { TextInput } from '../../designs/basics/forms';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const answerContent = "여기에 다른 사람의 답안지 내용이 들어갑니다.";
+
+interface AnswerViewComponentProps {
+  onClose: () => void;
+}
+const answer = "여기에 다른 사람의 답안지 내용이 들어갑니다.";
 const comments = [
   { id: 1, user: '사용자1', content: '댓글 내용 1' },
   { id: 2, user: '사용자2', content: '댓글 내용 2' },
@@ -15,7 +19,7 @@ const comments = [
   { id: 7, user: '사용자7', content: '보입니다.' },
 ];
 
-const AnswerViewComponent: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
+const AnswerViewComponent: React.FC<AnswerViewComponentProps> = ({ onClose }) => {
   const [newComment, setNewComment] = useState('');
 
   const handleSubmitComment = async () => {
@@ -31,6 +35,7 @@ const AnswerViewComponent: React.FC<{ onClose?: () => void }> = ({ onClose }) =>
       toast.error('댓글 제출에 실패했습니다.'); // 오류를 토스트 메시지로 표시
     }
   };
+  
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: '10px' }}>
@@ -39,7 +44,7 @@ const AnswerViewComponent: React.FC<{ onClose?: () => void }> = ({ onClose }) =>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', height : '320px' }}>
         {/* Answer content */}
         <div style={{ width: '50%', border: '1px solid #ddd', padding: '10px' }}>
-          {answerContent}
+          {answer}
         </div>
 
         {/* Comment list */}

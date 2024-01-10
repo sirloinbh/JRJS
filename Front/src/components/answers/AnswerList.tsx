@@ -79,7 +79,7 @@ const AnswerList: React.FC = () => {
   return (
     <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {selectedAnswer ? (
-        <AnswerViewComponent answer={selectedAnswer} onClose={handleCloseView} />
+        <AnswerViewComponent onClose={handleCloseView} />
       ) : (
         <>
           {answers
@@ -102,7 +102,7 @@ const AnswerList: React.FC = () => {
               disabled={currentPage === 0}
               style={navigationButtonStyle}
             >
-              <img src="../../public/images/leftarrow.png"
+              <img src="/images/leftarrow.png"
                alt="Left Arrow"
                style={arrowStyle(currentPage === 0)} 
               />
@@ -112,7 +112,7 @@ const AnswerList: React.FC = () => {
               disabled={currentPage === totalPages - 1}
               style={navigationButtonStyle}
             >
-              <img src="../../public/images/rightarrow_.png"
+              <img src="/images/rightarrow_.png"
                alt="Right Arrow"
                style={arrowStyle(currentPage === totalPages - 1)} 
               />

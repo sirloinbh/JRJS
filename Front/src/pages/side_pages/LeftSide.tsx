@@ -57,7 +57,7 @@ const LeftSide: React.FC<LeftSideProps> = ({ className }) => {
     <div className = { className } style={leftSideStyle}>
       <IconContainer />
       <BorderlessButton onClick={handleLeftArrowClick} style={{ opacity: arrowStyle.opacity, pointerEvents: arrowStyle.pointerEvents }}>
-        <img src="../../public/images/leftarrow.png" alt="Left Arrow" style={arrowStyle} />
+        <img src="/images/leftarrow.png" alt="Left Arrow" style={arrowStyle} />
       </BorderlessButton>
       <div>
       </div>

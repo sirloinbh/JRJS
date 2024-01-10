@@ -11,7 +11,7 @@ const AdmissionTicket: React.FC = () => {
 
   const name = '홍길동';
   const examNumber = '123456';
-  const imagePath = '../../../public/images/human.png';
+  const imagePath = '/images/human.png';
 
   const handleLogout = () => {
     console.log('로그아웃');

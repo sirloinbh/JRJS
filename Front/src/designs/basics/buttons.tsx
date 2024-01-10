@@ -151,7 +151,7 @@ export const BorderlessButton: React.FC<BasicButtonProps> = ({ children, onClick
 // LongButton 컴포넌트
 export const LongButton: React.FC<BasicButtonProps> = ({ children, onClick, style }) => {
   return (
-    <ButtonWrapper style={{ ...styles.longButton, ...style }} hoverStyle={{ backgroundColor: '#ddd' }} onClick={onClick}>
+    <ButtonWrapper style={{ ...styles.longButton, ...style,  flexDirection: 'row' }} hoverStyle={{ backgroundColor: '#ddd' }} onClick={onClick}>
       {children}
     </ButtonWrapper>
   );

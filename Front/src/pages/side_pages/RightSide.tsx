@@ -61,7 +61,7 @@ const RightSide: React.FC<RightSideProps> = ({ className }) => {
     <div className={className} style={rightSideStyle}>
       <AdmissionTicket />
       <BorderlessButton onClick={handleRightArrowClick} style={{ opacity: arrowStyle.opacity, pointerEvents: arrowStyle.pointerEvents }}>
-        <img src="../../public/images/rightarrow_.png" alt="Right Arrow" style={arrowStyle} />
+        <img src="/images/rightarrow_.png" alt="Right Arrow" style={arrowStyle} />
       </BorderlessButton>
       <div>
       </div>
